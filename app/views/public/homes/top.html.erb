@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+      <h1>ようこそ、Gift Diaryへ！</h1>
+      <p>　Gift Diaryでは、皆様のプレゼントを贈った、貰った際の経験談をもとに、商品のランキングを作成しています。ぜひ、プレゼントを選ぶ際の参考にご覧になったり、プレゼントを贈った、貰った際のエピソードを共有したりしてみてください！</p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+          <%= link_to "Log in", new_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to "Sign up", new_user_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div>
+      </div>
+      <p>　ログインしなくても、ランキングや商品レビューを見ることができます。</p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+          <%= link_to "Ranking", posts_path, class: "btn btn-info btn-sm btn-danger mb-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to "Search", new_user_path, class: "btn btn-success btn-sm btn-warning sign_up" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

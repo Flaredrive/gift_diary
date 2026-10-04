@@ -1,0 +1,7 @@
+<h2><%= @post.name %></h2>
+<%= image_tag url_for(@post.image), size: "200x200" %>
+
+<% if @user = Current.user %>
+  <%= link_to "ポスト編集", edit_post_path(@post) %>
+  <%= link_to "ポスト削除", post_path(@post), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+<% end %>

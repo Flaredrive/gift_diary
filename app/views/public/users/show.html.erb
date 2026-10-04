@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h2><%= @user.name %></h2>
+
+  <% if @user.image.attached? %>
+    <%= image_tag url_for(@user.image), size: "200x200", class: "rounded-circle" %>
+  <% else %>
+    <%= image_tag "default_user_icon.png", size: "200x200", class: "rounded-circle" %>
+  <% end %>
+
+  <% if @user == Current.user %>
+    <div class="mt-3">
+      <%= link_to "ユーザー編集", edit_user_path(@user), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

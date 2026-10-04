@@ -1,14 +1,31 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  
+  scope module: :public do
+    root to: "homes#top"
+    get "about", to: "homes#about"
+    resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
+    resource :"session", only: [:new, :create, :destroy]
+    resources :posts do
+      resources :"comments", only: [:create, :edit, :update, :destroy]
+      resource :"post_like", only: [:create, :destroy]
+    end
+    get "search", to: "posts#search"
+    resources :comments, only: [] do
+      resource :"comment_like", only: [:create, :destroy]
+    end
+    resources :passwords, param: :token
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  namespace :admin do
+    root to: "homes#top"
+    resources :users, only: [:index, :show, :edit, :update]
+    resource :"sessions", only: [:new, :create, :destroy]
+    resources :gendar_tags, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :relationship_tags, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :category_tags, only: [:new, :create, :index, :edit, :update, :destroy]
+    resources :posts, only: [:show, :edit, :update, :destroy]
+    resource :"sessions", only: [:new, :create, :destroy]
+  end
+  
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

@@ -1,0 +1,14 @@
+<%= form_with model: @post do |f| %>
+
+  <h4>商品名</h4>
+  <%= f.text_field :name %>
+
+  <h4>商品画像</h4>
+  <%= f.file_field :image, accept: "image/*" %>
+
+  <h4>カテゴリタグ</h4>
+  <%= f.text_field :category_tag_id %>
+  
+  <%= f.submit '保存' %>
+  
+<% end %>
