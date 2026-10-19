@@ -1,3 +1,7 @@
+body {
+  background-image: asset-url("hoge.jpg");
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css.
  *
