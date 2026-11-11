@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_18_085347) do
+ActiveRecord::Schema[8.0].define(version: 2026_11_11_083650) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,8 +56,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_18_085347) do
   create_table "comment_likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.integer "comment_id", null: false
+    t.bigint "user_id"
+    t.bigint "comment_id"
     t.index ["comment_id"], name: "index_comment_likes_on_comment_id"
     t.index ["user_id"], name: "index_comment_likes_on_user_id"
   end
@@ -65,10 +65,10 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_18_085347) do
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
-    t.integer "relationship_tag_id", null: false
-    t.integer "gender_tag_id", null: false
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.bigint "relationship_tag_id"
+    t.bigint "gender_tag_id"
     t.text "body"
     t.integer "month", null: false
     t.integer "rating", null: false
@@ -87,15 +87,15 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_18_085347) do
   create_table "post_likes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id"
+    t.bigint "post_id"
     t.index ["post_id"], name: "index_post_likes_on_post_id"
     t.index ["user_id"], name: "index_post_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "category_tag_id"
+    t.bigint "category_tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
@@ -115,7 +115,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_18_085347) do
     t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "admin_id"
+    t.bigint "admin_id"
     t.index ["admin_id"], name: "index_sessions_on_admin_id"
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
