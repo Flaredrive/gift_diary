@@ -26,6 +26,7 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿できました！続けてコメントしましょう！"
       redirect_to post_path(@post)
     else
+      Rails.logger.error @post.errors.full_messages.inspect
       render :new, status: :unprocessable_entity
     end
   end

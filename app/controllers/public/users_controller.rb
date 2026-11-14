@@ -38,6 +38,16 @@ class Public::UsersController < ApplicationController
   def destroy
   end
 
+  def withdraw
+    user = User.find(params[:id])
+    if user.update(is_active: false)
+      terminate_session
+      redirect_to root_path, notice: "退会処理が完了しました。"
+    else
+      redirect_to user_path(user), alert: "退会処理に失敗しました。"
+    end
+  end
+
   private
  
   def user_params

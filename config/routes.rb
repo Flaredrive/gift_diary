@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about", to: "homes#about"
     resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
+    patch "users/:id/withdraw", to: "users#withdraw", as: :withdraw_user
     resource :"session", only: [:new, :create, :destroy]
     resources :posts do
       resources :"comments", only: [:create, :edit, :update, :destroy]

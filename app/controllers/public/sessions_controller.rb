@@ -7,10 +7,14 @@ class Public::SessionsController < ApplicationController
 
   def create
     if user = User.authenticate_by(params.permit(:name, :password))
-      start_new_session_for user
-      redirect_to after_authentication_url
+      if user.is_active?
+        start_new_session_for user
+        redirect_to after_authentication_url
+      else 
+        redirect_to new_session_path, alert: "退会済みのアカウントです。再度ご登録ください。"
+      end
     else
-      redirect_to new_session_path, alert: "Try another email address or password."
+      redirect_to new_session_path, alert: "Try another name or password."
     end
   end
 
