@@ -6,5 +6,6 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category_tag
 
+  validates :name, presence: true
   validates :image, presence: true
 end
