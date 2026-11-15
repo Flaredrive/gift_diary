@@ -33,10 +33,17 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user != Current.user
+      redirect_to posts_path
+    end
   end
 
   def update
     @post = Post.find(params[:id])
+    if @post.user != Current.user
+      redirect_to posts_path
+    end
+
     if @post.update(post_params)
       redirect_to post_path(@post)
     else

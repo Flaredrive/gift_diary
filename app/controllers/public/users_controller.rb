@@ -22,6 +22,9 @@ class Public::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if @user != Current.user
+      redirect_to user_path(Current.user)
+    end
   end
 
   def show
@@ -31,6 +34,10 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    if @user != Current.user
+      redirect_to user_path(Current.user)
+    end
+    
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
